@@ -113,9 +113,9 @@ print("Sorted:", quick_sort(arr))
 # 📌 5. Strassen's Matrix Multiplication (Divide & Conquer)
 
 ```python
-# Helper functions omitted for brevity
-# Full version exists in the main python file
-
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def strassen_matrix_multiply(A: Matrix, B: Matrix) -> Matrix:
     # Validate shapes
     n = len(A)
@@ -166,6 +166,9 @@ print(strassen_matrix_multiply(A, B))
 # 📌 6. Fractional Knapsack (Greedy Algorithm)
 
 ```python
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def fractional_knapsack(values, weights, capacity):
     items = []
     for i, (v, w) in enumerate(zip(values, weights)):
@@ -196,6 +199,9 @@ print(fractional_knapsack(values, weights, capacity))
 # 📌 7. Graph Coloring (Greedy – Welsh Powell)
 
 ```python
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def graph_coloring_greedy(adj_list):
     nodes_sorted = sorted(adj_list, key=lambda x: -len(adj_list[x]))
     color_of = {v: None for v in adj_list}
@@ -220,6 +226,9 @@ print(graph_coloring_greedy(adj))
 # 📌 8. 8‑Queens Problem (Backtracking)
 
 ```python
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def eight_queens_backtracking():
     N = 8
     solutions = []
@@ -252,9 +261,9 @@ print("First solution:", sols[0])
 # 📌 9. Traveling Salesperson Problem — Held‑Karp DP
 
 ```python
-# Simplified summary function
-# Full version in main code due to complexity
-
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def held_karp_tsp(dist: List[List[float]]) -> Tuple[float, List[int]]:
     """Return (min_cost, path) for metric complete graph using Held-Karp DP.
     dist is an n x n matrix. Node 0 is considered the start and end."""
@@ -323,6 +332,9 @@ print(held_karp_tsp(dist))
 # 📌 10. Valid Parentheses
 
 ```python
+from typing import List, Tuple, Optional, Dict
+import math
+import itertools
 def is_valid_parentheses(s):
     pairs = {')': '(', ']': '[', '}': '{'}
     stack = []
