@@ -116,6 +116,50 @@ print("Sorted:", quick_sort(arr))
 from typing import List, Tuple, Optional, Dict
 import math
 import itertools
+import copy
+
+Matrix = List[List[float]]
+
+def _next_power_of_two(n: int) -> int:
+    return 1 << (n - 1).bit_length() if n > 1 else 1
+
+
+def _pad_matrix(A: Matrix, size: int) -> Matrix:
+    n = len(A)
+    m = len(A[0]) if A else 0
+    B = [[0.0] * size for _ in range(size)]
+    for i in range(n):
+        for j in range(m):
+            B[i][j] = float(A[i][j])
+    return B
+
+
+def _add(A: Matrix, B: Matrix) -> Matrix:
+    n = len(A)
+    return [[A[i][j] + B[i][j] for j in range(n)] for i in range(n)]
+
+
+def _sub(A: Matrix, B: Matrix) -> Matrix:
+    n = len(A)
+    return [[A[i][j] - B[i][j] for j in range(n)] for i in range(n)]
+
+
+def _split(A: Matrix) -> Tuple[Matrix, Matrix, Matrix, Matrix]:
+    n = len(A)
+    mid = n // 2
+    A11 = [[A[i][j] for j in range(mid)] for i in range(mid)]
+    A12 = [[A[i][j] for j in range(mid, n)] for i in range(mid)]
+    A21 = [[A[i][j] for j in range(mid)] for i in range(mid, n)]
+    A22 = [[A[i][j] for j in range(mid, n)] for i in range(mid, n)]
+    return A11, A12, A21, A22
+
+
+def _join(A11: Matrix, A12: Matrix, A21: Matrix, A22: Matrix) -> Matrix:
+    top = [a + b for a, b in zip(A11, A12)]
+    bottom = [a + b for a, b in zip(A21, A22)]
+    return top + bottom
+
+
 def strassen_matrix_multiply(A: Matrix, B: Matrix) -> Matrix:
     # Validate shapes
     n = len(A)
